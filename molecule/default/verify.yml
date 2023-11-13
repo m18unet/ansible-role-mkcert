@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars_files:
+    - ../../defaults/main.yml
+
+  tasks:
+    - name: Check the mkcert version.
+      shell: "{{ mkcert_bin_path }} --version"
+      changed_when: false
+      register: mkcert_verify_version
+
+    - name: Verify mkcert's version is {{ mkcert_version }}
+      assert:
+        that:
+          - mkcert_version in mkcert_verify_version.stdout

@@ -1,0 +1,15 @@
+---
+- name: Download the mkcert binary file.
+  get_url:
+    url: "{{ mkcert_download_url }}"
+    dest: /tmp
+    mode: 0755
+  register: mkcert_download
+
+- name: Copy the mkcert binary into place.
+  copy:
+    src: "{{ mkcert_download.dest }}"
+    dest: "{{ mkcert_bin_path }}"
+    mode: 0755
+    remote_src: true
+  become: true

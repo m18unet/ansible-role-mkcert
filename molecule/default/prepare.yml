@@ -1,0 +1,11 @@
+---
+- name: Prepare
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars:
+    mkcert_version: '1.4.1'
+
+  roles:
+    - m18unet.mkcert

@@ -1,0 +1,8 @@
+---
+# See available releases: https://github.com/FiloSottile/mkcert/releases
+mkcert_version: '1.4.4'
+mkcert_platform: linux
+mkcert_arch: amd64
+mkcert_bin_path: /usr/local/bin/mkcert
+mkcert_release_url: https://github.com/FiloSottile/mkcert/releases/download/v{{ mkcert_version }}
+mkcert_download_url: "{{ mkcert_release_url }}/mkcert-v{{ mkcert_version }}-{{ mkcert_platform }}-{{ mkcert_arch }}"

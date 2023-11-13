@@ -1,0 +1,17 @@
+---
+- name: Check the presence of the mkcert binary.
+  stat:
+    path: "{{ mkcert_bin_path }}"
+  register: mkcert_check
+
+- name: Check the mkcert version.
+  shell: "{{ mkcert_bin_path }} --version"
+  failed_when: false
+  changed_when: false
+  register: mkcert_current_version
+
+- name: Install mkcert v{{ mkcert_version }}
+  include_tasks: install.yml
+  when: >-
+    not mkcert_check.stat.exists
+    or mkcert_version not in mkcert_current_version.stdout
